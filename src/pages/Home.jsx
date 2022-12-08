@@ -6,7 +6,8 @@ const Home = () => {
   return (
     <div className="">
       <Carousel />
-      <div className="bg-slate-600 h-96"></div>
+
+      <div className="h-96" style={{ backgroundColor: "#212121" }}></div>
       <div>Home</div>
       <div>Home</div>
       <div>Home</div>

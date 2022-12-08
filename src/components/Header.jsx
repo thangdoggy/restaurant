@@ -14,7 +14,7 @@ const Header = () => {
     "py-2.5 font-titleFont font-semibold text-xl hover:text-my-yellow hover:duration-300";
 
   return (
-    <div className="w-full bg-black bg-opacity-80 z-50 text-white h-28 shadow-lg flex justify-between px-8 py-4">
+    <div className="fixed w-full bg-black bg-opacity-80 z-50 text-white h-28 shadow-lg flex justify-between px-8 py-4">
       <Link
         to="/"
         className="text-5xl flex items-center font-extrabold font-titleFont z-50 tracking-wide"

@@ -25,10 +25,9 @@ const Carousel = () => {
       <AliceCarousel
         mouseTracking
         items={items}
-        // autoWidth="false"
         autoPlay="true"
         autoPlayInterval="1500"
-        infinite={true}
+        infinite="true"
         animationType="fadeout"
         animationDuration="2000"
         responsive={{
@@ -39,11 +38,12 @@ const Carousel = () => {
           768: { items: 2.5, itemsFit: "contain" },
           1024: {
             items: 3,
-            itemsFit: "fill",
+            itemsFit: "contain",
           },
         }}
+        disableButtonsControls="true"
       />
-      <img src={BrushLine} alt="" className="w-full" />
+      <img src={BrushLine} alt="" className="w-full z-5000" />
     </div>
   );
 };
