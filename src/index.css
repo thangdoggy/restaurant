@@ -1,0 +1,43 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import "react-alice-carousel/lib/alice-carousel.css";
+
+html {
+  padding: 0;
+  margin: 0;
+  overflow-x: hidden;
+}
+
+.alice-carousel__stage {
+  display: flex;
+}
+.alice-carousel__stage-item {
+  flex: 1 0 auto;
+  height: 98vh;
+}
+
+.alice-carousel__stage-item img {
+  height: 100%;
+  width: 100%;
+}
+
+/* Button carousel */
+
+/* Dot item carousel */
+
+.alice-carousel__dots {
+  position: absolute;
+  margin-top: -50px;
+  width: 100vw;
+}
+
+.alice-carousel__dots-item::before {
+  padding: 5px;
+  color: red;
+}
+
+.alice-carousel__dots-item.__active {
+  background-color: red;
+}
