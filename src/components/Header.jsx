@@ -17,9 +17,13 @@ const Header = () => {
     <div className="fixed w-full bg-black bg-opacity-80 z-50 text-white h-28 shadow-lg flex justify-between py-4 px-8">
       <Link
         to="/"
-        className="text-5xl flex items-center font-extrabold font-titleFont z-50 tracking-wide"
+        className="flex items-center z-50 hover:scale-110 duration-500"
       >
-        Avant Garden
+        <img
+          src="https://popmenucloud.com/cdn-cgi/image/width=300,height=300,format=auto,fit=scale-down/xgipqnlt/12278568-4a53-4797-935a-0784cb40a1a5.png"
+          alt="avant-garden-logo"
+          className="w-40"
+        />
       </Link>
       <ul className="hidden lg:flex gap-8 items-center">
         <li>
@@ -50,7 +54,7 @@ const Header = () => {
       </ul>
 
       <div className="hidden md:flex flex-col justify-between items-end">
-        <div className="font-serif text-sm flex gap-8">
+        <div className="font-serif text-sm flex gap-2">
           <div>
             <span className="text-my-yellow">Call us: </span>
             <a
@@ -67,7 +71,7 @@ const Header = () => {
               href="mailto:hue@gmail.com"
               className="hover:underline hover:underline-offset-2"
             >
-              hue@gmail.com
+              avantgarden@gmail.com
             </a>
           </div>
         </div>
