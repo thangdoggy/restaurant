@@ -17,8 +17,10 @@ body {
   height: 100%;
   /* overflow-x: hidden; */
   scroll-behavior: smooth;
+  background-color: #212121;
 }
 
+/* Scroll bar */
 /* width */
 ::-webkit-scrollbar {
   width: 10px;
@@ -39,6 +41,7 @@ body {
   background: #dcca87;
 }
 
+/* Carousel */
 .alice-carousel__stage {
   display: flex;
 }
@@ -52,4 +55,8 @@ body {
 .alice-carousel__stage-item img {
   height: 100%;
   width: 100%;
+}
+
+.map {
+  filter: grayscale(50%) invert(100%) contrast(80%);
 }

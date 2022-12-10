@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 import { Carousel } from "../components";
 
@@ -7,75 +8,82 @@ const Home = () => {
     <div className="">
       <Carousel />
 
-      <div className="h-96" style={{ backgroundColor: "#212121" }}></div>
-
-      <header class="flex items-center justify-center h-screen mb-12 bg-fixed bg-center bg-cover bg-landing-img1">
-        <div class="p-5 text-2xl text-white bg-purple-300 bg-opacity-50 rounded-xl">
-          Welcome to my site!
-        </div>
-      </header>
-      <div class="max-w-lg m-auto">
-        <p class="mb-4">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec
-          placerat a magna non varius. Proin leo felis, euismod non porta eget,
-          varius sit amet sapien. Maecenas in nulla at leo convallis consectetur
-          id a sapien. Nulla nec pulvinar nisi. Vivamus non facilisis lacus, et
-          volutpat libero. Nulla ac odio aliquam, accumsan arcu ut, lacinia est.
-          Nulla eu sem elit. Fusce nec laoreet sem, semper molestie libero.
-        </p>
-        <p class="mb-4">
-          Ut sagittis lacus consequat accumsan venenatis. Sed sollicitudin,
-          lectus et fringilla ultrices, dolor nisi scelerisque tortor, vel
-          finibus magna massa non nunc. Phasellus massa quam, egestas a nisl
-          sed, porta volutpat metus. Nunc sed elit ac tellus tempor cursus.
-          Suspendisse potenti. Vestibulum varius rutrum nisl nec consequat.
-          Suspendisse semper dignissim sem viverra semper. Nulla porttitor,
-          purus nec accumsan pharetra, nisi dolor condimentum ipsum, id
-          consequat nulla nunc in ligula.
-        </p>
-        <p class="mb-12">
-          Nulla pharetra lacinia nisi, vitae mollis tellus euismod id. Mauris
-          porta dignissim hendrerit. Cras id velit varius, fermentum lectus
-          vitae, ultricies dolor. In bibendum rhoncus purus vel rutrum. Nam
-          vulputate imperdiet fringilla. Donec blandit libero massa. Suspendisse
-          dictum diam mauris, vitae fermentum dolor tincidunt in. Pellentesque
-          sollicitudin venenatis dolor, vitae scelerisque elit ultrices eu.
-          Donec eget sodales risus, quis dignissim neque.
-        </p>
+      <div class="flex flex-col items-start justify-center gap-2 px-10 h-96 bg-fixed bg-right bg-cover bg-special-event">
+        <span class="text-2xl md:text-5xl text-my-yellow font-titleFont font-extrabold capitalize">
+          Let us serve you a wonderfull
+        </span>
+        <span class=" text-5xl md:text-8xl text-my-yellow font-titleFont font-extrabold capitalize">
+          christmast dining!
+        </span>
+        <span class="text-lg md:text-xl text-white capitalize">
+          Special discount on 24/12
+        </span>
       </div>
-      <section class="flex items-center justify-center h-screen m-auto mb-12 bg-fixed bg-center bg-cover bg-landing-img2">
-        <div class="p-5 text-2xl text-white bg-purple-300 bg-opacity-50 rounded-xl">
-          Parralax inline
+
+      <div className="flex flex-col items-center bg-theme-dark my-10">
+        <Link
+          to="/menu"
+          className="px-5 md:px-10 font-titleFont text-8xl text-my-yellow py-10"
+        >
+          Our Menu
+        </Link>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 w-full">
+          <Link
+            to="/menu"
+            id="menu-child1"
+            className="flex flex-col items-center pt-10 px-10 h-[28rem] border border-white bg-main bg-cover bg-center hover:scale-125 duration-500"
+          >
+            <p className="text-white font-titleFont text-5xl">Main Dishes</p>
+          </Link>
+          <Link
+            to="/menu"
+            id="menu-child2"
+            className="flex flex-col items-center  pt-10 px-10 h-[28rem] border border-white bg-starter bg-cover bg-center hover:scale-125 duration-500"
+          >
+            <p className="font-titleFont text-5xl">Starters</p>
+          </Link>
+          <Link
+            to="/menu"
+            className="flex flex-col items-center  pt-10 px-10 h-[28rem] border border-white bg-dessert bg-cover bg-center hover:scale-125 duration-500"
+          >
+            <p className="text-white font-titleFont text-5xl">Desserts</p>
+          </Link>
+          <Link
+            to="/menu"
+            className="flex flex-col items-center  pt-10 px-10 h-[28rem] border border-white bg-drinks bg-cover bg-center hover:scale-125 duration-500"
+          >
+            <p className="text-white font-titleFont text-5xl">Drinks</p>
+          </Link>
         </div>
-      </section>
-      <div class="max-w-lg m-auto">
-        <p class="mb-4">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec
-          placerat a magna non varius. Proin leo felis, euismod non porta eget,
-          varius sit amet sapien. Maecenas in nulla at leo convallis consectetur
-          id a sapien. Nulla nec pulvinar nisi. Vivamus non facilisis lacus, et
-          volutpat libero. Nulla ac odio aliquam, accumsan arcu ut, lacinia est.
-          Nulla eu sem elit. Fusce nec laoreet sem, semper molestie libero.
-        </p>
-        <p class="mb-4">
-          Ut sagittis lacus consequat accumsan venenatis. Sed sollicitudin,
-          lectus et fringilla ultrices, dolor nisi scelerisque tortor, vel
-          finibus magna massa non nunc. Phasellus massa quam, egestas a nisl
-          sed, porta volutpat metus. Nunc sed elit ac tellus tempor cursus.
-          Suspendisse potenti. Vestibulum varius rutrum nisl nec consequat.
-          Suspendisse semper dignissim sem viverra semper. Nulla porttitor,
-          purus nec accumsan pharetra, nisi dolor condimentum ipsum, id
-          consequat nulla nunc in ligula.
-        </p>
-        <p class="mb-4">
-          Nulla pharetra lacinia nisi, vitae mollis tellus euismod id. Mauris
-          porta dignissim hendrerit. Cras id velit varius, fermentum lectus
-          vitae, ultricies dolor. In bibendum rhoncus purus vel rutrum. Nam
-          vulputate imperdiet fringilla. Donec blandit libero massa. Suspendisse
-          dictum diam mauris, vitae fermentum dolor tincidunt in. Pellentesque
-          sollicitudin venenatis dolor, vitae scelerisque elit ultrices eu.
-          Donec eget sodales risus, quis dignissim neque.
-        </p>
+      </div>
+
+      <div class="flex flex-col items-start justify-center gap-2 px-10 h-[32rem] bg-fixed bg-right bg-cover bg-landing-img2">
+        <span class=" text-6xl md:text-8xl font-titleFont font-extrabold capitalize w-2/3">
+          We Look Forward to Serving You!
+        </span>
+        <Link
+          to="/reservation"
+          className="mt-5 border-2 border-black py-2 px-5 font-semibold hover:bg-my-yellow hover:duration-200 hover:-translate-y-1 hover:translate-x-1"
+        >
+          Book A Table Now
+        </Link>
+      </div>
+
+      <div className="lg:flex justify-evenly items-center my-8">
+        <h2 className="text-6xl pb-5 text-center md:text-8xl font-titleFont font-semibold text-my-yellow">
+          Our Location
+        </h2>
+        <div>
+          <iframe
+            className="map w-full h-[32rem] lg:w-[40rem]"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3918.092565214637!2d106.8031880143276!3d10.880563960239225!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3174d958707f8685%3A0xd577177b5198597f!2sHo%20Chi%20Minh%20City%20University%20of%20Technology%20-%20Vietnam%20National%20University%20Ho%20Chi%20Minh%20City%20(Campus%202)!5e0!3m2!1sen!2s!4v1670680016999!5m2!1sen!2s"
+            style={{ border: "2px solid blue" }}
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+          ></iframe>
+        </div>
       </div>
     </div>
   );

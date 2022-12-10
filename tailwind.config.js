@@ -18,6 +18,16 @@ module.exports = {
       backgroundImage: {
         "landing-img1": "url('./img/landing-img1.jpg')",
         "landing-img2": "url('./img/landing-img2.jpg')",
+        "special-event": "url('./img/special-event.jpg')",
+        main: "url('./img/main.jpg')",
+        starter: "url('./img/starter.jpg')",
+        dessert: "url('./img/dessert.jpg')",
+        drinks: "url('./img/drinks.jpg')",
+        "menu-page": "url(./img/menu-page.jpg)",
+        "reservation-page": "url(./img/reservation-page.jpg)",
+        "contact-page": "url(./img/contact-page.jpg)",
+        "about-page": "url(./img/about-page.jpg)",
+
         "bg-footer": "url('./img/bg-footer.png')",
       },
     },

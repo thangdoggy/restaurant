@@ -1,8 +1,10 @@
 import React from "react";
 import { FiFacebook, FiTwitter, FiInstagram } from "react-icons/fi";
 
+import Logo from "../img/logo.png";
+
 const Footer = () => (
-  <div className="w-full bg-bg-footer px-10 py-20 text-white flex flex-col gap-11">
+  <footer className="w-full bg-bg-footer px-10 py-20 text-white flex flex-col gap-11">
     <div className="lg:flex items-start justify-between gap-5">
       <div className="basis-1/4 contact flex flex-col items-center">
         <h1 className="text-4xl font-titleFont font-semibold py-5">
@@ -30,10 +32,8 @@ const Footer = () => (
       </div>
 
       <div className="basis-1/2 restaurant-info flex flex-col items-center">
-        <h1 className="text-5xl font-bold font-titleFont text-my-yellow py-5">
-          Avant Garden
-        </h1>
-        <p className="pb-6 capitalize">
+        <img src={Logo} alt="logo" className="py-5" />
+        <p className="pb-6 capitalize text-center">
           &quot;The best way to find yourself is to lose yourself in the service
           of others.&quot;
         </p>
@@ -74,7 +74,7 @@ const Footer = () => (
     <div className="copyright mx-auto">
       <p className="">2022@AvantGarden. All Rights reserved.</p>
     </div>
-  </div>
+  </footer>
 );
 
 export default Footer;

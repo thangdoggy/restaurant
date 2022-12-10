@@ -15,10 +15,13 @@ const Header = () => {
     "py-2.5 font-titleFont font-semibold text-xl hover:text-my-yellow hover:duration-300";
 
   return (
-    <div className="fixed w-full bg-black bg-opacity-80 z-50 text-white h-28 shadow-lg flex justify-between py-4 px-8">
+    <nav className="fixed w-full bg-black bg-opacity-80 z-50 text-white h-20 shadow-lg flex justify-between py-4 px-8">
       <Link
         to="/"
         className="flex items-center z-50 w-72 hover:scale-110 duration-500"
+        onClick={() => {
+          setToogleMenu(false);
+        }}
       >
         <img src={Logo} alt="avant-garden-logo" />
       </Link>
@@ -43,46 +46,20 @@ const Header = () => {
             Contact
           </Link>
         </li>
-        <li>
+        {/* <li>
           <Link to="/news" className={linkClassName}>
             News
           </Link>
-        </li>
+        </li> */}
       </ul>
 
-      <div className="hidden md:flex flex-col justify-between items-end">
-        <div className="text-xs flex gap-2">
-          <div>
-            <span className="text-my-yellow">Call us: </span>
-            <a
-              href="tel:0935302341"
-              className="hover:underline hover:underline-offset-2"
-            >
-              0935302341
-            </a>
-          </div>
-
-          <div>
-            <span className="text-my-yellow">Email: </span>
-            <a
-              href="mailto:hue@gmail.com"
-              className="hover:underline hover:underline-offset-2"
-            >
-              avantgarden@gmail.com
-            </a>
-          </div>
+      <div className="hidden md:flex items-center gap-8">
+        <div className="py-2 px-4 border-y-2 border-my-yellow font-bold font-titleFont tracking-wide text-xl hover:bg-my-yellow hover:duration-200 hover:-translate-y-1 hover:translate-x-1 hover:text-black">
+          <Link to="/reservation">Table Reservation</Link>
         </div>
-        <div className="flex items-center gap-8">
-          <div className="py-2 px-4 border-y-2 border-my-yellow font-bold font-titleFont tracking-wide text-xl hover:bg-my-yellow hover:duration-200 hover:-translate-y-1 hover:translate-x-1 hover:text-black">
-            <Link to="/table-reservation">Table Reservation</Link>
-          </div>
-          <Link
-            to="/login"
-            className="hover:text-my-yellow duration-500 text-sm"
-          >
-            Login / Register
-          </Link>
-        </div>
+        <Link to="/login" className="hover:text-my-yellow duration-500 text-sm">
+          Login / Register
+        </Link>
       </div>
 
       <div className="flex items-center text-2xl cursor-pointer lg:hidden">
@@ -153,7 +130,7 @@ const Header = () => {
                   Contact
                 </Link>
               </li>
-              <li className={linkToogleClassName}>
+              {/* <li className={linkToogleClassName}>
                 <Link
                   to="/news"
                   onClick={() => {
@@ -162,7 +139,7 @@ const Header = () => {
                 >
                   News
                 </Link>
-              </li>
+              </li> */}
               <li className={linkToogleClassName}>
                 <Link
                   to="/table-reservation"
@@ -187,7 +164,7 @@ const Header = () => {
           </div>
         </div>
       }
-    </div>
+    </nav>
   );
 };
 
