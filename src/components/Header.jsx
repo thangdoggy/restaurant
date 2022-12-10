@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { FaBars } from "react-icons/fa";
 import { MdRestaurantMenu } from "react-icons/md";
 import ToogleImg from "../img/img3.jpg";
+import Logo from "../img/logo.png";
 
 const Header = () => {
   const [toogleMenu, setToogleMenu] = useState(false);
@@ -17,15 +18,11 @@ const Header = () => {
     <div className="fixed w-full bg-black bg-opacity-80 z-50 text-white h-28 shadow-lg flex justify-between py-4 px-8">
       <Link
         to="/"
-        className="flex items-center z-50 hover:scale-110 duration-500"
+        className="flex items-center z-50 w-72 hover:scale-110 duration-500"
       >
-        <img
-          src="https://popmenucloud.com/cdn-cgi/image/width=300,height=300,format=auto,fit=scale-down/xgipqnlt/12278568-4a53-4797-935a-0784cb40a1a5.png"
-          alt="avant-garden-logo"
-          className="w-40"
-        />
+        <img src={Logo} alt="avant-garden-logo" />
       </Link>
-      <ul className="hidden lg:flex gap-8 items-center">
+      <ul className="hidden lg:flex gap-6 items-center">
         <li>
           <Link to="/" className={linkClassName}>
             Home
@@ -54,7 +51,7 @@ const Header = () => {
       </ul>
 
       <div className="hidden md:flex flex-col justify-between items-end">
-        <div className="font-serif text-sm flex gap-2">
+        <div className="text-xs flex gap-2">
           <div>
             <span className="text-my-yellow">Call us: </span>
             <a
@@ -76,12 +73,12 @@ const Header = () => {
           </div>
         </div>
         <div className="flex items-center gap-8">
-          <div className="py-2 px-4 border-y-2 border-my-yellow font-bold font-titleFont text-xl hover:bg-my-yellow hover:duration-200 hover:-translate-y-1 hover:translate-x-1 hover:text-black">
+          <div className="py-2 px-4 border-y-2 border-my-yellow font-bold font-titleFont tracking-wide text-xl hover:bg-my-yellow hover:duration-200 hover:-translate-y-1 hover:translate-x-1 hover:text-black">
             <Link to="/table-reservation">Table Reservation</Link>
           </div>
           <Link
             to="/login"
-            className="hover:underline hover:underline-offset-4"
+            className="hover:text-my-yellow duration-500 text-sm"
           >
             Login / Register
           </Link>
@@ -98,7 +95,7 @@ const Header = () => {
 
       {
         <div
-          className={`overflow-y-auto fixed right-0 top-0 bg-black w-full h-full ${
+          className={`overflow-y-auto bg-bg-footer fixed right-0 top-0 bg-black w-full h-full ${
             toogleMenu ? "translate-x-0" : "translate-x-full"
           } ease-in-out duration-500 z-40`}
         >

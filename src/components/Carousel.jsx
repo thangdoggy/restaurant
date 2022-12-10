@@ -150,6 +150,7 @@ const Carousel = () => {
         }}
         renderNextButton={renderNextButton}
         renderPrevButton={renderPrevButton}
+        disableDotsControls
       />
     </div>
   );

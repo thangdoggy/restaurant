@@ -3,9 +3,9 @@ import { FiFacebook, FiTwitter, FiInstagram } from "react-icons/fi";
 
 const Footer = () => (
   <div className="w-full bg-bg-footer px-10 py-20 text-white flex flex-col gap-11">
-    <div className="flex items-start justify-between gap-5">
+    <div className="lg:flex items-start justify-between gap-5">
       <div className="basis-1/4 contact flex flex-col items-center">
-        <h1 className="text-4xl font-titleFont font-semibold pb-5">
+        <h1 className="text-4xl font-titleFont font-semibold py-5">
           Contact Us
         </h1>
         <p className="pb-5 text-gray-400">01 Pham Van Dong, Ho Chi Minh City</p>
@@ -30,7 +30,7 @@ const Footer = () => (
       </div>
 
       <div className="basis-1/2 restaurant-info flex flex-col items-center">
-        <h1 className="text-5xl font-bold font-titleFont text-my-yellow pb-3">
+        <h1 className="text-5xl font-bold font-titleFont text-my-yellow py-5">
           Avant Garden
         </h1>
         <p className="pb-6 capitalize">
@@ -61,7 +61,7 @@ const Footer = () => (
       </div>
 
       <div className="basis-1/4 open-hour flex flex-col items-center">
-        <h1 className="text-4xl font-titleFont font-semibold pb-5">
+        <h1 className="text-4xl font-titleFont font-semibold py-5">
           Opening Hours
         </h1>
         <p className="text-gray-400 pb-2">Monday - Friday:</p>
@@ -72,7 +72,7 @@ const Footer = () => (
     </div>
 
     <div className="copyright mx-auto">
-      <p className="">2022@Restaurant. All Rights reserved.</p>
+      <p className="">2022@AvantGarden. All Rights reserved.</p>
     </div>
   </div>
 );

@@ -2,6 +2,8 @@ import React from "react";
 import login from "../img/login.jpg";
 import { Link } from "react-router-dom";
 
+import Logo from "../img/logo.png";
+
 const Login = () => {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 h-screen w-full">
@@ -15,21 +17,15 @@ const Login = () => {
 
       <div className="bg-black flex flex-col justify-center bg-bg-footer">
         <form className="max-w-[400px] w-full mx-auto bg-zinc-900 bg-opacity-50 p-8 px-8">
-          <div className="flex justify-between">
-            <h2 className="text-5xl font-bold text-center text-my-yellow font-titleFont py-5">
-              Log In
-            </h2>
-            <Link
-              to="/"
-              className="flex items-center z-50 hover:scale-110 duration-500"
-            >
-              <img
-                src="https://popmenucloud.com/cdn-cgi/image/width=300,height=300,format=auto,fit=scale-down/xgipqnlt/12278568-4a53-4797-935a-0784cb40a1a5.png"
-                alt="avant-garden-logo"
-                className="w-32"
-              />
-            </Link>
-          </div>
+          <Link
+            to="/"
+            className="flex justify-center p-3 z-50 hover:scale-110 duration-500 "
+          >
+            <img src={Logo} alt="avant-garden-logo" className="w-72" />
+          </Link>
+          <h2 className="text-5xl font-bold text-center text-my-yellow font-titleFont py-5">
+            Log In
+          </h2>
 
           <div className="flex flex-col text-gray-400 py-2 text-sm">
             <label>Email</label>

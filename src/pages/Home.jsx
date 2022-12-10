@@ -6,6 +6,7 @@ const Home = () => {
   return (
     <div className="">
       <Carousel />
+
       <div className="h-96" style={{ backgroundColor: "#212121" }}></div>
 
       <header class="flex items-center justify-center h-screen mb-12 bg-fixed bg-center bg-cover bg-landing-img1">
