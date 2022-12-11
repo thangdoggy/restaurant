@@ -1,12 +1,25 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
-import { FaBars } from "react-icons/fa";
+import { FaBars, FaRegUser } from "react-icons/fa";
 import { MdRestaurantMenu } from "react-icons/md";
+
 import ToogleImg from "../img/img3.jpg";
 import Logo from "../img/logo.png";
 
 const Header = () => {
+  // Save user login
+  const userInfo = localStorage.getItem("userInfo");
+  // console.log(JSON.parse(userInfo));
+
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    localStorage.clear();
+    navigate("/");
+    window.location.reload();
+  };
+
   const [toogleMenu, setToogleMenu] = useState(false);
 
   const linkClassName =
@@ -57,9 +70,22 @@ const Header = () => {
         <div className="py-2 px-4 border-y-2 border-my-yellow font-bold font-titleFont tracking-wide text-xl hover:bg-my-yellow hover:duration-200 hover:-translate-y-1 hover:translate-x-1 hover:text-black">
           <Link to="/reservation">Table Reservation</Link>
         </div>
-        <Link to="/login" className="hover:text-my-yellow duration-500 text-sm">
-          Login / Register
-        </Link>
+
+        {userInfo ? (
+          <Link to="/profile" className=" text-2xl flex items-center gap-4">
+            <FaRegUser className="hover:text-my-yellow duration-500" />
+            <div className="text-sm hover:text-red-600" onClick={handleLogout}>
+              Log out
+            </div>
+          </Link>
+        ) : (
+          <Link
+            to="/login"
+            className="hover:text-my-yellow duration-500 text-sm"
+          >
+            Login / Register
+          </Link>
+        )}
       </div>
 
       <div className="flex items-center text-2xl cursor-pointer lg:hidden">
@@ -130,19 +156,10 @@ const Header = () => {
                   Contact
                 </Link>
               </li>
-              {/* <li className={linkToogleClassName}>
-                <Link
-                  to="/news"
-                  onClick={() => {
-                    setToogleMenu(false);
-                  }}
-                >
-                  News
-                </Link>
-              </li> */}
+
               <li className={linkToogleClassName}>
                 <Link
-                  to="/table-reservation"
+                  to="/reservation"
                   onClick={() => {
                     setToogleMenu(false);
                   }}
@@ -150,16 +167,40 @@ const Header = () => {
                   Table Reservation
                 </Link>
               </li>
-              <li className={linkToogleClassName}>
-                <Link
-                  to="/login"
-                  onClick={() => {
-                    setToogleMenu(false);
-                  }}
-                >
-                  Login
-                </Link>
-              </li>
+
+              {!userInfo ? (
+                <li className={linkToogleClassName}>
+                  <Link
+                    to="/login"
+                    onClick={() => {
+                      setToogleMenu(false);
+                    }}
+                  >
+                    Login
+                  </Link>
+                </li>
+              ) : (
+                <>
+                  <li className={linkToogleClassName}>
+                    <Link
+                      to="/profile"
+                      onClick={() => {
+                        setToogleMenu(false);
+                      }}
+                    >
+                      My Profile
+                    </Link>
+                  </li>
+                  <li className={linkToogleClassName}>
+                    <div
+                      className="cursor-pointer hover:text-red-600"
+                      onClick={handleLogout}
+                    >
+                      Log out
+                    </div>
+                  </li>
+                </>
+              )}
             </ul>
           </div>
         </div>

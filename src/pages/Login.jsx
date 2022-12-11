@@ -1,16 +1,39 @@
-import React from "react";
-import login from "../img/login.jpg";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 
+import { login } from "../actions/userActions";
+
+import login_img from "../img/login.jpg";
 import Logo from "../img/logo.png";
 
 const Login = () => {
+  const [email, setEmail] = useState();
+  const [password, setPassword] = useState();
+
+  const [alert, setAlert] = useState();
+
+  const navigate = useNavigate();
+
+  const handleLogin = (e) => {
+    e.preventDefault();
+    const userInfo = { email, password };
+
+    login(userInfo).then((res) => {
+      if (res.status === 201) setAlert(res.data);
+      else {
+        localStorage.setItem("userInfo", JSON.stringify(res.data));
+        navigate("/");
+        window.location.reload();
+      }
+    });
+  };
+
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 h-screen w-full">
       <div className="hidden md:block">
         <img
           className="h-screen w-full "
-          src={login}
+          src={login_img}
           alt="login-avant-garden"
         />
       </div>
@@ -27,20 +50,29 @@ const Login = () => {
             Log In
           </h2>
 
+          {/* Validate alert */}
+          <p className="text-red-600 text-sm text-center pt-2">{alert}</p>
+
           <div className="flex flex-col text-gray-400 py-2 text-sm">
             <label>Email</label>
             <input
               className="bg-neutral-800 bg-opacity-60 my-2 p-2 px-3 focus:outline-none"
               type="text"
-              name=""
-              id=""
+              name="email"
+              id="email"
+              onChange={(e) => {
+                setEmail(e.target.value);
+              }}
             />
             <label>Password</label>
             <input
               className="bg-neutral-800 bg-opacity-60 my-2 p-2 px-3 focus:outline-none"
               type="password"
-              name=""
-              id=""
+              name="password"
+              id="password"
+              onChange={(e) => {
+                setPassword(e.target.value);
+              }}
             />
           </div>
 
@@ -51,7 +83,10 @@ const Login = () => {
             </p>
             <Link className="">Forgot Password ?</Link>
           </div>
-          <button className="w-full my-5 py-2 border border-my-yellow text-white font-serif hover:bg-my-yellow hover:duration-200 hover:-translate-y-1 hover:translate-x-1 hover:text-black">
+          <button
+            className="w-full my-5 py-2 border border-my-yellow text-white font-serif hover:bg-my-yellow hover:duration-200 hover:-translate-y-1 hover:translate-x-1 hover:text-black"
+            onClick={handleLogin}
+          >
             Let's explore Avant Garden!
           </button>
           <p className="text-gray-400 text-xs text-center">
