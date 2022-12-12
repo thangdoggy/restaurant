@@ -9,7 +9,7 @@ import Logo from "../img/logo.png";
 
 const Header = () => {
   // Save user login
-  const userInfo = localStorage.getItem("userInfo");
+  const userInfo = JSON.parse(localStorage.getItem("userInfo"));
   // console.log(JSON.parse(userInfo));
 
   const navigate = useNavigate();

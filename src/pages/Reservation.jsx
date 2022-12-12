@@ -1,6 +1,9 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const Reservation = () => {
+  const cart = JSON.parse(localStorage.getItem("cart"));
+
   return (
     <div className="reservation">
       <div class="flex flex-col items-center gap-5 justify-center h-screen bg-fixed bg-center bg-cover bg-reservation-page">
@@ -10,6 +13,39 @@ const Reservation = () => {
       </div>
 
       <div class="bg-theme-dark px-10 flex flex-col items-center">
+        <span class="pt-20 pb-10 font-titleFont text-my-yellow capitalize font-semibold text-4xl tracking-wider">
+          courses reserved
+        </span>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 pb-10">
+          {!(cart.length === 0) ? (
+            cart.map((item) => {
+              return (
+                <div className="md:flex items-center justify-between text-white py-4">
+                  <div>
+                    <span className="text-my-yellow font-titleFont text-3xl font-bold">
+                      {item.food_name}
+                    </span>
+                    <span className="float-right pr-10 font-titleFont text-3xl font-bold">
+                      $ {item.price}
+                    </span>
+                    <p className="py-5">{item.description}</p>
+                  </div>
+                  <img
+                    src={item.img}
+                    alt={item.food_name}
+                    className="w-44 h-44 rounded-full"
+                  />
+                </div>
+              );
+            })
+          ) : (
+            <Link to="/menu" className="text-white text-center hover:underline">
+              Choose courses now!
+            </Link>
+          )}
+        </div>
+
         <span class="pt-20 pb-10 font-titleFont text-my-yellow capitalize font-semibold text-4xl tracking-wider">
           book a table
         </span>

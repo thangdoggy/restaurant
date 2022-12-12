@@ -22,8 +22,9 @@ const Login = () => {
       if (res.status === 201) setAlert(res.data);
       else {
         localStorage.setItem("userInfo", JSON.stringify(res.data));
+        localStorage.setItem("cart", JSON.stringify([]));
         navigate("/");
-        window.location.reload();
+        // window.location.reload();
       }
     });
   };

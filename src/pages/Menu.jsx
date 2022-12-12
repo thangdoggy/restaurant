@@ -1,45 +1,67 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
-
-const MainDishes = [
-  {
-    food_name: "Antipasto Platter",
-    price: "28",
-    description:
-      "Pepperoncini | Chickpeas | Mushrooms | Italian vinaigrette dressing",
-    img: "https://images.unsplash.com/photo-1542528180-a1208c5169a5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=877&q=80",
-  },
-  {
-    food_name: "Antipasto Platter",
-    price: "28",
-    description:
-      "Pepperoncini | Chickpeas | Mushrooms | Italian vinaigrette dressing",
-    img: "https://images.unsplash.com/photo-1542528180-a1208c5169a5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=877&q=80",
-  },
-  {
-    food_name: "Antipasto Platter",
-    price: "28",
-    description:
-      "Pepperoncini | Chickpeas | Mushrooms | Italian vinaigrette dressing",
-    img: "https://images.unsplash.com/photo-1542528180-a1208c5169a5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=877&q=80",
-  },
-];
-
-const Starters = [
-  {
-    food_name: "Antipasto Platter",
-    price: "28",
-    description:
-      "Pepperoncini | Chickpeas | Mushrooms | Italian vinaigrette dressing",
-    img: "https://images.unsplash.com/photo-1542528180-a1208c5169a5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=877&q=80",
-  },
-];
-
-const Desserts = [];
+import React, { useState, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import {
+  getDesserts,
+  getDrinks,
+  getMainDishes,
+  getStarters,
+} from "../actions/userActions";
 
 const Drinks = [];
 
+const Desserts = [];
+
 const Menu = () => {
+  const [MainDishes, setMainDishes] = useState([]);
+  const [Starters, setStarters] = useState([]);
+  const [Desserts, setDesserts] = useState([]);
+  const [Drinks, setDrinks] = useState([]);
+
+  useEffect(() => {
+    getMainDishes().then((res) => {
+      setMainDishes(res.data);
+    });
+
+    getStarters().then((res) => {
+      setStarters(res.data);
+    });
+
+    getDesserts().then((res) => {
+      setDesserts(res.data);
+    });
+
+    getDrinks().then((res) => {
+      setDrinks(res.data);
+    });
+  });
+
+  const navigate = useNavigate();
+
+  const userInfo = JSON.parse(localStorage.getItem("userInfo"));
+  let cart = JSON.parse(localStorage.getItem("cart"));
+
+  // Handle reserve courses
+  const temp = cart.map((item) => item.id);
+  const [reserved, setReserved] = useState(temp);
+
+  const handleReserve = (item) => {
+    if (!userInfo) navigate("/login");
+    else {
+      setReserved([...reserved, item.id]);
+      cart.push(item);
+      localStorage.setItem("cart", JSON.stringify(cart));
+    }
+  };
+  // console.log(cart);
+  // console.log(reserved);
+
+  const handleCancel = (item) => {
+    cart = cart.filter((e) => e.id !== item.id);
+    localStorage.setItem("cart", JSON.stringify(cart));
+    setReserved(cart.map((item) => item.id));
+  };
+
+  // Menu type choice
   const [main, setMain] = useState(true);
   const [starter, setStarter] = useState(false);
   const [dessert, setDessert] = useState(false);
@@ -131,6 +153,25 @@ const Menu = () => {
                       $ {item.price}
                     </span>
                     <p className="py-5">{item.description}</p>
+
+                    {reserved.length > 0 &&
+                    reserved.some((e) => e === item.id) ? (
+                      <>
+                        <button
+                          onClick={() => handleCancel(item)}
+                          className="border px-4 py-1 text-sm float-right mr-8 border-green-600 text-green-600 hover:bg-my-yellow hover:duration-200 hover:-translate-y-1 hover:translate-x-1 hover:text-black hover:border-my-yellow"
+                        >
+                          Reserved
+                        </button>
+                      </>
+                    ) : (
+                      <button
+                        onClick={() => handleReserve(item)}
+                        className="border px-4 py-1 text-sm float-right mr-8 hover:bg-my-yellow hover:duration-200 hover:-translate-y-1 hover:translate-x-1 hover:text-black hover:border-my-yellow"
+                      >
+                        Reserve
+                      </button>
+                    )}
                   </div>
                   <img
                     src={item.img}
@@ -146,6 +187,13 @@ const Menu = () => {
             </p>
           )}
         </div>
+
+        <Link
+          to="/reservation"
+          className="float-right pb-10 text-my-yellow cursor-pointer hover:underline"
+        >
+          Go to your reservation
+        </Link>
       </div>
     </div>
   );
