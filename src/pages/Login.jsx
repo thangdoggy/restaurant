@@ -77,13 +77,6 @@ const Login = () => {
             />
           </div>
 
-          <div className="flex justify-between text-gray-400 py-2 text-sm">
-            <p className="flex items-end">
-              <input className="mr-2" type="checkbox" />
-              Remember Me
-            </p>
-            <Link className="">Forgot Password ?</Link>
-          </div>
           <button
             className="w-full my-5 py-2 border border-my-yellow text-white font-serif hover:bg-my-yellow hover:duration-200 hover:-translate-y-1 hover:translate-x-1 hover:text-black"
             onClick={handleLogin}

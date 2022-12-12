@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
-import { register, login } from "../actions/userActions";
+import { register } from "../actions/userActions";
 
 import login_img from "../img/login.jpg";
 import Logo from "../img/logo.png";
@@ -9,17 +9,24 @@ import Logo from "../img/logo.png";
 const Register = () => {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
+  const [confirmPassword, setConfirmPassword] = useState();
   const [fullname, setFullname] = useState();
   const [phone, setPhone] = useState();
 
   const [alert, setAlert] = useState();
 
-  const userInfo = { email, password, fullname, phone };
+  const navigate = useNavigate();
+
+  const userInfo = { email, password, confirmPassword, fullname, phone };
 
   const handleRegister = (e) => {
     e.preventDefault();
     register(userInfo).then((res) => {
       setAlert(res.data.trim());
+      if (res.status === 201)
+        setTimeout(() => {
+          navigate("/login");
+        }, 1500);
     });
   };
 
@@ -93,7 +100,9 @@ const Register = () => {
               type="password"
               name="confirm"
               id="confirm"
-              onChange={(e) => {}}
+              onChange={(e) => {
+                setConfirmPassword(e.target.value);
+              }}
             />
             <label>Phone</label>
             <input

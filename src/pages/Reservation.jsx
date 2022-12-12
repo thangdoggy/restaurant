@@ -17,6 +17,8 @@ const Reservation = () => {
   // console.log(numOfPerson, date, time, message);
 
   const handleBooking = (e) => {
+    if (!localStorage.getItem("userInfo")) navigate("/login");
+
     e.preventDefault();
 
     const courses = JSON.parse(localStorage.getItem("cart")).map(
@@ -71,7 +73,7 @@ const Reservation = () => {
         </span>
 
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 pb-10">
-          {!(cart.length === 0) ? (
+          {cart && !(cart.length === 0) ? (
             cart.map((item) => {
               return (
                 <div className="md:flex items-center justify-between text-white py-4">
@@ -105,17 +107,6 @@ const Reservation = () => {
         <span class="pt-20 pb-10 font-titleFont text-my-yellow capitalize font-semibold text-4xl tracking-wider">
           book a table
         </span>
-
-        <p
-          class={`pb-10 text-md ${
-            alert ===
-            "Your reservations has been sent. Contact us for detail request!"
-              ? "text-green-600"
-              : "text-red-600"
-          }`}
-        >
-          {alert}
-        </p>
 
         <form action="" className="w-full md:px-36">
           <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 pb-10 text-white">
@@ -153,6 +144,17 @@ const Reservation = () => {
               onChange={(e) => setMessage(e.target.value)}
               className="col-span-full bg-neutral-800 bg-opacity-60 my-2 py-4 px-4 border border-gray-500 focus:outline-none"
             ></textarea>
+
+            <p
+              class={`text-md ${
+                alert ===
+                "Your reservations has been sent. Contact us for detail request!"
+                  ? "text-green-600"
+                  : "text-red-600"
+              }`}
+            >
+              {alert}
+            </p>
 
             <button
               onClick={handleBooking}
