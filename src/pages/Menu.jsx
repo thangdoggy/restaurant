@@ -1,39 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import {
-  getDesserts,
-  getDrinks,
-  getMainDishes,
-  getStarters,
-} from "../actions/userActions";
-
-const Drinks = [];
-
-const Desserts = [];
+import { getMenu } from "../actions/userActions";
 
 const Menu = () => {
-  const [MainDishes, setMainDishes] = useState([]);
-  const [Starters, setStarters] = useState([]);
-  const [Desserts, setDesserts] = useState([]);
-  const [Drinks, setDrinks] = useState([]);
-
-  useEffect(() => {
-    getMainDishes().then((res) => {
-      setMainDishes(res.data);
-    });
-
-    getStarters().then((res) => {
-      setStarters(res.data);
-    });
-
-    getDesserts().then((res) => {
-      setDesserts(res.data);
-    });
-
-    getDrinks().then((res) => {
-      setDrinks(res.data);
-    });
-  });
+  const [menu, setMenu] = useState([]);
 
   const navigate = useNavigate();
 
@@ -41,7 +11,7 @@ const Menu = () => {
   let cart = JSON.parse(localStorage.getItem("cart"));
 
   // Handle reserve courses
-  const temp = cart.map((item) => item.id);
+  const temp = cart ? cart.map((item) => item.id) : [];
   const [reserved, setReserved] = useState(temp);
 
   const handleReserve = (item) => {
@@ -67,11 +37,21 @@ const Menu = () => {
   const [dessert, setDessert] = useState(false);
   const [drink, setDrink] = useState(false);
 
-  let chosenMenu = [];
-  if (main) chosenMenu = MainDishes;
-  else if (starter) chosenMenu = Starters;
-  else if (dessert) chosenMenu = Desserts;
-  else chosenMenu = Drinks;
+  const handleType = (type) => {
+    getMenu(type).then((res) => {
+      setMenu(res.data);
+    });
+  };
+
+  if (main) {
+    handleType(1);
+  } else if (starter) {
+    handleType(2);
+  } else if (dessert) {
+    handleType(3);
+  } else {
+    handleType(4);
+  }
 
   return (
     <div className="menu">
@@ -139,10 +119,10 @@ const Menu = () => {
         </button>
       </div>
 
-      <div class="mb-10 mx-auto px-5 lg:px-10">
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 pb-10">
-          {chosenMenu.length !== 0 ? (
-            chosenMenu.map((item) => {
+      <div class="mb-10 px-5 lg:px-10">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 pb-10">
+          {menu.length !== 0 ? (
+            menu.map((item) => {
               return (
                 <div className="md:flex items-center justify-between text-white py-4">
                   <div>

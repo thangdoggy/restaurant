@@ -1,8 +1,61 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { reserveTable } from "../actions/userActions";
 
 const Reservation = () => {
+  const navigate = useNavigate();
+
+  const [alert, setAlert] = useState("");
+
   const cart = JSON.parse(localStorage.getItem("cart"));
+
+  const [numOfPerson, setNumOfPerson] = useState("");
+  const [date, setDate] = useState("");
+  const [time, setTime] = useState("");
+  const [message, setMessage] = useState("");
+
+  // console.log(numOfPerson, date, time, message);
+
+  const handleBooking = (e) => {
+    e.preventDefault();
+
+    const courses = JSON.parse(localStorage.getItem("cart")).map(
+      (course) => course.id
+    );
+
+    // console.log(courses);
+
+    let num_of_person = 0;
+
+    if (numOfPerson === "1 person") num_of_person = 1;
+    else if (numOfPerson === "2 person") num_of_person = 2;
+    else if (numOfPerson === "4 person") num_of_person = 4;
+    else if (numOfPerson === "8 person") num_of_person = 8;
+    else if (numOfPerson === "10 person") num_of_person = 10;
+    else num_of_person = numOfPerson;
+
+    const reserveInfo = {
+      num_of_person,
+      date,
+      time,
+      message,
+      user_id: JSON.parse(localStorage.getItem("userInfo")).user_id,
+      courses,
+    };
+
+    // console.log(reserveInfo);
+
+    reserveTable(reserveInfo).then((res) => {
+      setAlert(res.data);
+
+      if (res.status === 200) {
+        localStorage.setItem("cart", "[]");
+        setTimeout(() => {
+          navigate("/");
+        }, 1500);
+      }
+    });
+  };
 
   return (
     <div className="reservation">
@@ -30,6 +83,9 @@ const Reservation = () => {
                       $ {item.price}
                     </span>
                     <p className="py-5">{item.description}</p>
+                    <p className="py-5 text-sm italic text-gray-400">
+                      {item.type}
+                    </p>
                   </div>
                   <img
                     src={item.img}
@@ -50,12 +106,24 @@ const Reservation = () => {
           book a table
         </span>
 
+        <p
+          class={`pb-10 text-md ${
+            alert ===
+            "Your reservations has been sent. Contact us for detail request!"
+              ? "text-green-600"
+              : "text-red-600"
+          }`}
+        >
+          {alert}
+        </p>
+
         <form action="" className="w-full md:px-36">
           <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 pb-10 text-white">
             <select
               name="person"
               id="person"
-              className=" bg-neutral-800 bg-opacity-60 py-4 px-8 border border-gray-500 focus:outline-none"
+              onChange={(e) => setNumOfPerson(e.target.value)}
+              className=" bg-neutral-800 bg-opacity-60 py-4 px-4 border border-gray-500 focus:outline-none"
             >
               <option value="persons">Persons</option>
               <option value="1 person">1 person</option>
@@ -67,12 +135,14 @@ const Reservation = () => {
 
             <input
               type="date"
-              className="bg-neutral-800 bg-opacity-60 py-4 px-8 border border-gray-500 focus:outline-none"
+              onChange={(e) => setDate(e.target.value)}
+              className="bg-neutral-800 bg-opacity-60 py-4 px-4 border border-gray-500 focus:outline-none"
             />
 
             <input
               type="time"
-              className="bg-neutral-800 bg-opacity-60 py-4 px-8 border border-gray-500 focus:outline-none"
+              onChange={(e) => setTime(e.target.value)}
+              className="bg-neutral-800 bg-opacity-60 py-4 px-4 border border-gray-500 focus:outline-none"
             />
 
             <textarea
@@ -80,10 +150,14 @@ const Reservation = () => {
               id="message"
               rows="6"
               placeholder="Tell us more information ..."
-              className="col-span-full bg-neutral-800 bg-opacity-60 my-2 py-4 px-8 border border-gray-500 focus:outline-none"
+              onChange={(e) => setMessage(e.target.value)}
+              className="col-span-full bg-neutral-800 bg-opacity-60 my-2 py-4 px-4 border border-gray-500 focus:outline-none"
             ></textarea>
 
-            <button className="col-span-full w-full py-3 border border-my-yellow text-white font-serif hover:bg-my-yellow hover:duration-200 hover:-translate-y-1 hover:translate-x-1 hover:text-black">
+            <button
+              onClick={handleBooking}
+              className="col-span-full w-full py-3 border border-my-yellow text-white font-serif hover:bg-my-yellow hover:duration-200 hover:-translate-y-1 hover:translate-x-1 hover:text-black"
+            >
               Book Now
             </button>
           </div>
