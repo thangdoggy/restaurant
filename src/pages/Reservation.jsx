@@ -72,7 +72,11 @@ const Reservation = () => {
           courses reserved
         </span>
 
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 pb-10">
+        <div
+          class={`grid grid-cols-1 ${
+            cart && !(cart.length === 0) ? "lg:grid-cols-2" : ""
+          } gap-8 pb-10`}
+        >
           {cart && !(cart.length === 0) ? (
             cart.map((item) => {
               return (
