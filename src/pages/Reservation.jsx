@@ -53,7 +53,7 @@ const Reservation = () => {
       if (res.status === 200) {
         localStorage.setItem("cart", "[]");
         setTimeout(() => {
-          navigate("/");
+          navigate("/profile");
         }, 1500);
       }
     });
@@ -109,7 +109,7 @@ const Reservation = () => {
         </span>
 
         <form action="" className="w-full md:px-36">
-          <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 pb-10 text-white">
+          <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 pb-10 text-gray-300">
             <select
               name="person"
               id="person"

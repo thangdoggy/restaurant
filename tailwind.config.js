@@ -27,6 +27,7 @@ module.exports = {
         "reservation-page": "url(./img/reservation-page.jpg)",
         "contact-page": "url(./img/contact-page.jpg)",
         "about-page": "url(./img/about-page.jpg)",
+        "profile-page": "url(./img/profile-page.jpg)",
 
         "bg-footer": "url('./img/bg-footer.png')",
       },

@@ -4,7 +4,6 @@ import { Link, useNavigate } from "react-router-dom";
 import { register } from "../actions/userActions";
 
 import login_img from "../img/login.jpg";
-import Logo from "../img/logo.png";
 
 const Register = () => {
   const [email, setEmail] = useState();
