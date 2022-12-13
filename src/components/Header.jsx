@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 import { FaBars, FaRegUser } from "react-icons/fa";
@@ -7,7 +7,35 @@ import { MdRestaurantMenu } from "react-icons/md";
 import ToogleImg from "../img/img3.jpg";
 import Logo from "../img/logo.png";
 
+const useScrollDirection = () => {
+  const [scrollDirection, setScrollDirection] = useState(null);
+
+  useEffect(() => {
+    let lastScrollY = window.pageYOffset;
+
+    const updateScrollDirection = () => {
+      const scrollY = window.pageYOffset;
+      const direction = scrollY > lastScrollY ? "down" : "up";
+      if (
+        direction !== scrollDirection &&
+        (scrollY - lastScrollY > 10 || scrollY - lastScrollY < -10)
+      ) {
+        setScrollDirection(direction);
+      }
+      lastScrollY = scrollY > 0 ? scrollY : 0;
+    };
+    window.addEventListener("scroll", updateScrollDirection); // add event listener
+    return () => {
+      window.removeEventListener("scroll", updateScrollDirection); // clean up
+    };
+  }, [scrollDirection]);
+
+  return scrollDirection;
+};
+
 const Header = () => {
+  const scrollDirection = useScrollDirection();
+
   // Save user login
   const userInfo = JSON.parse(localStorage.getItem("userInfo"));
   // console.log(JSON.parse(userInfo));
@@ -28,7 +56,11 @@ const Header = () => {
     "py-2.5 font-titleFont font-semibold text-xl hover:text-my-yellow hover:duration-300";
 
   return (
-    <nav className="fixed w-full bg-black bg-opacity-80 z-50 text-white h-20 shadow-lg flex justify-between py-4 px-8">
+    <nav
+      className={`fixed w-full bg-black bg-opacity-80 z-50 text-white h-20 shadow-lg flex justify-between py-4 px-8 ${
+        scrollDirection === "down" ? "-top-20" : "top-0"
+      } transition-all duration-500`}
+    >
       <Link
         to="/"
         className="flex items-center z-50 w-72 hover:scale-110 duration-500"

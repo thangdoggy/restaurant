@@ -30,7 +30,7 @@ const Login = () => {
   };
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 h-screen w-full">
+    <div className="grid grid-cols-1 md:grid-cols-2 h-screen w-full pt-20">
       <div className="hidden md:block">
         <img
           className="h-screen w-full "

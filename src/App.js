@@ -1,7 +1,7 @@
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-import { Header, Footer } from "./components";
+import { Header, Footer, ScrollToTop } from "./components";
 import {
   Home,
   Login,
@@ -12,10 +12,13 @@ import {
   About,
 } from "./pages";
 
-const App = () => {
+const App = (props) => {
   return (
     <BrowserRouter>
+      <ScrollToTop />
+
       <Header />
+
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/menu" element={<Menu />} />
@@ -26,6 +29,7 @@ const App = () => {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
       </Routes>
+
       <Footer />
     </BrowserRouter>
   );
