@@ -11,18 +11,19 @@ $data = json_decode(file_get_contents("php://input"));
 
 
 // Now we check if the data was submitted, isset() function will check if the data exists.
-if (!isset($data->email, $data->password, $data->fullname, $data->phone)) {
+if (!isset($data->email, $data->password, $data->confirmPassword, $data->fullname, $data->phone)) {
 	// Could not get the data that should have been sent.
 	exit('Please complete the registration form!');
 }
 
 $email = trim($data->email);
 $password = trim($data->password);
+$confirmPassword = trim($data->confirmPassword);
 $fullname = trim($data->fullname);
 $phone = trim($data->phone);
 
 // Make sure the submitted registration values are not empty.
-if (empty($email) || empty($password) || empty($fullname) || empty($phone)) {
+if (empty($email) || empty($password) || empty($confirmPassword) || empty($fullname) || empty($phone)) {
 	// One or more values are empty.
 	exit('Please complete the registration form');
 }
@@ -37,6 +38,10 @@ if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
 // Password
 if (strlen($password) > 20 || strlen($password) < 5) {
 	exit('Password must be between 5 and 20 characters long!');
+}
+
+if ($password != $confirmPassword) {
+	exit('Password do not match!');
 }
 
 // Full name
@@ -66,6 +71,8 @@ if ($stmt = $con->prepare('SELECT user_id, password FROM user WHERE email = ?'))
             $password = password_hash($password, PASSWORD_DEFAULT);
             $stmt->bind_param('ssss', $email, $password, $fullname, $phone);
             $stmt->execute();
+
+			http_response_code(201);
             echo 'You have successfully registered, you can log in now!';
         } else {
             // Something is wrong with the sql statement, check to make sure accounts table exists with all 3 fields.

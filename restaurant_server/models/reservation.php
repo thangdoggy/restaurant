@@ -71,6 +71,25 @@ function create() {
     }
 }
 
+function readByUser() {
+     
+    // select all query
+    $query = "SELECT * FROM reservations WHERE user_id = ? ORDER BY created_at DESC";
+ 
+    // prepare query statement
+    $stmt = $this->conn->prepare($query);
+
+    $stmt->bind_param("i", $this->user_id);
+ 
+    // execute query
+    $stmt->execute();
+ 
+    return $stmt;
 }
+
+
+}
+
+
 
 ?>
