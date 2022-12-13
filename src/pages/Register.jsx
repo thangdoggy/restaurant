@@ -56,7 +56,7 @@ const Register = () => {
             <label>Your name</label>
             <input
               required
-              className="bg-neutral-800 bg-opacity-60  my-2 p-2 px-3 focus:outline-none"
+              className="bg-neutral-800 bg-opacity-60  my-2 p-2 px-3 border-0 focus:border-my-yellow focus:ring-my-yellow"
               type="text"
               name="fullname"
               id="fullname"
@@ -67,7 +67,7 @@ const Register = () => {
             <label>Email</label>
             <input
               required
-              className=" bg-neutral-800 bg-opacity-60  my-2 p-2 px-3 focus:outline-none"
+              className=" bg-neutral-800 bg-opacity-60  my-2 p-2 px-3 border-0 focus:border-my-yellow focus:ring-my-yellow"
               type="email"
               name="email"
               id="email"
@@ -78,7 +78,7 @@ const Register = () => {
             <label>Password</label>
             <input
               required
-              className=" bg-neutral-800 bg-opacity-60  my-2 p-2 px-3 focus:outline-none"
+              className=" bg-neutral-800 bg-opacity-60  my-2 p-2 px-3 border-0 focus:border-my-yellow focus:ring-my-yellow"
               type="password"
               name="password"
               id="password"
@@ -89,7 +89,7 @@ const Register = () => {
             <label>Confirm Password</label>
             <input
               required
-              className=" bg-neutral-800 bg-opacity-60  my-2 p-2 px-3 focus:outline-none"
+              className=" bg-neutral-800 bg-opacity-60  my-2 p-2 px-3 border-0 focus:border-my-yellow focus:ring-my-yellow"
               type="password"
               name="confirm"
               id="confirm"
@@ -100,7 +100,7 @@ const Register = () => {
             <label>Phone</label>
             <input
               required
-              className=" bg-neutral-800 bg-opacity-60  my-2 p-2 px-3 focus:outline-none"
+              className=" bg-neutral-800 bg-opacity-60  my-2 p-2 px-3 border-0 focus:border-my-yellow focus:ring-my-yellow"
               type="tel"
               name="phone"
               id="phone"

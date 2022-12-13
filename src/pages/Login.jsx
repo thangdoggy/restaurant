@@ -50,7 +50,7 @@ const Login = () => {
           <div className="flex flex-col text-gray-400 py-2 text-sm">
             <label>Email</label>
             <input
-              className="bg-neutral-800 bg-opacity-60 my-2 p-2 px-3 focus:outline-none"
+              className="bg-neutral-800 bg-opacity-60 my-2 p-2 px-3 border-0 focus:border-my-yellow focus:ring-my-yellow"
               type="text"
               name="email"
               id="email"
@@ -60,7 +60,7 @@ const Login = () => {
             />
             <label>Password</label>
             <input
-              className="bg-neutral-800 bg-opacity-60 my-2 p-2 px-3 focus:outline-none"
+              className="bg-neutral-800 bg-opacity-60 my-2 p-2 px-3 border-0 focus:border-my-yellow focus:ring-my-yellow"
               type="password"
               name="password"
               id="password"
