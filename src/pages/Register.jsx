@@ -38,12 +38,6 @@ const Register = () => {
 
       <div className="bg-black flex flex-col justify-center bg-bg-footer">
         <form className="max-w-[400px] w-full mx-auto bg-zinc-900 bg-opacity-50 p-8 px-8">
-          <Link
-            to="/"
-            className="flex justify-center p-3 z-50 hover:scale-110 duration-500 "
-          >
-            <img src={Logo} alt="avant-garden-logo" className="w-72" />
-          </Link>
           <h2 className="text-5xl font-bold text-center text-my-yellow font-titleFont py-2">
             Register
           </h2>
