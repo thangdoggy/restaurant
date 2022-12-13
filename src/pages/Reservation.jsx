@@ -114,7 +114,7 @@ const Reservation = () => {
               name="person"
               id="person"
               onChange={(e) => setNumOfPerson(e.target.value)}
-              className=" bg-neutral-800 bg-opacity-60 py-4 px-4 border border-gray-500 focus:outline-none"
+              className=" bg-neutral-800 bg-opacity-60 py-4 px-4 border border-gray-500 focus:border-my-yellow focus:ring-my-yellow"
             >
               <option value="persons">Persons</option>
               <option value="1 person">1 person</option>
@@ -127,13 +127,13 @@ const Reservation = () => {
             <input
               type="date"
               onChange={(e) => setDate(e.target.value)}
-              className="bg-neutral-800 bg-opacity-60 py-4 px-4 border border-gray-500 focus:outline-none"
+              className="bg-neutral-800 bg-opacity-60 py-4 px-4 border border-gray-500 focus:border-my-yellow focus:ring-my-yellow"
             />
 
             <input
               type="time"
               onChange={(e) => setTime(e.target.value)}
-              className="bg-neutral-800 bg-opacity-60 py-4 px-4 border border-gray-500 focus:outline-none"
+              className="bg-neutral-800 bg-opacity-60 py-4 px-4 border border-gray-500 focus:border-my-yellow focus:ring-my-yellow"
             />
 
             <textarea
@@ -142,7 +142,7 @@ const Reservation = () => {
               rows="6"
               placeholder="Tell us more information ..."
               onChange={(e) => setMessage(e.target.value)}
-              className="col-span-full bg-neutral-800 bg-opacity-60 my-2 py-4 px-4 border border-gray-500 focus:outline-none"
+              className="col-span-full bg-neutral-800 bg-opacity-60 my-2 py-4 px-4 border border-gray-500 focus:border-my-yellow focus:ring-my-yellow"
             ></textarea>
 
             <p
